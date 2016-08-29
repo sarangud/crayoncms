@@ -25,4 +25,4 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 ]
 
 grails.plugin.springsecurity.logout.postOnly = false
-
+//grails.assets.bundle=true
