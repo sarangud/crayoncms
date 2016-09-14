@@ -3,6 +3,9 @@ import com.crayoncms.User
 import com.crayoncms.UserRole
 import com.crayoncms.Page
 import com.crayoncms.Block
+import com.crayoncms.MenuGroup
+import com.crayoncms.Menu
+import com.crayoncms.enums.MenuType
 import com.crayoncms.enums.PageStatus
 
 class BootStrap {
@@ -21,8 +24,6 @@ class BootStrap {
 
             def normalUser = new User(username: "anonymous", password: "iamjoker").save()
             UserRole.create normalUser, userRole
-
-            println User.list()
 
             new Page(
                     name: "Home", slug: "home", status: PageStatus.PUBLISHED, layout: "home",
@@ -247,6 +248,18 @@ class BootStrap {
   </header>
 </section>'''
             ).save()
+			
+			def header = MenuGroup.findOrSaveWhere(name: "Header")
+			def footer = MenuGroup.findOrSaveWhere(name: "Footer")
+			
+			Menu.findOrSaveWhere(name: "Home", menuType: MenuType.PAGE, menuTypeValue: "/home", menuGroup: header, 
+				position: 1, parent:0, cssClass: "", access: "", targetBlank: false)
+			Menu.findOrSaveWhere(name: "About", menuType: MenuType.PAGE, menuTypeValue: "/about", menuGroup: header, 
+				position: 2, parent:0, cssClass: "", access: "", targetBlank: false)
+			Menu.findOrSaveWhere(name: "Conact", menuType: MenuType.PAGE, menuTypeValue: "/contact", menuGroup: header, 
+				position: 0, parent:2, cssClass: "", access: "", targetBlank: false)
+			Menu.findOrSaveWhere(name: "Work", menuType: MenuType.PAGE, menuTypeValue: "/work", menuGroup: header, 
+				position: 3, parent: 0, cssClass: "", access: "", targetBlank: false)
 
         } catch(e) {
             println e

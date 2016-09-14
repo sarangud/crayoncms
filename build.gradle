@@ -18,7 +18,7 @@ group "crayontest"
 
 apply plugin:"eclipse"
 apply plugin:"idea"
-apply plugin:"war"
+//apply plugin:"war"
 apply plugin:"org.grails.grails-web"
 apply plugin:"org.grails.grails-gsp"
 apply plugin:"asset-pipeline"
@@ -67,6 +67,14 @@ assets {
     minifyJs = true
     minifyCss = true
 	includes = ["uploads/*"]
+}
+
+springBoot {
+	executable = true
+}
+
+jar {
+	archiveName('crayoncms.jar')
 }
 
 grails {
