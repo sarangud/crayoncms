@@ -2,6 +2,8 @@
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.crayoncms.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.crayoncms.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.crayoncms.Role'
+grails.plugin.springsecurity.rememberMe.persistent = true
+grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'com.crayoncms.PersistentLogin'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

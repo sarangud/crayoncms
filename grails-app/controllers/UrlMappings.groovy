@@ -1,5 +1,3 @@
-package crayontest
-
 class UrlMappings {
 
     static mappings = {
