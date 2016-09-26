@@ -45,9 +45,9 @@ class MenuTagLib {
 			menu += liString.replace("ID", it.id.toString()).replace("LINK_NAME", it.name)
 			def children = Menu.findAllByMenuGroupAndParent(group, it.id, [sort: 'position'])
 			if(children) {
-				menu += "<ul>"
+				menu += "<ol>"
 				menu += constructAdminMenuString("", children, group)
-				menu += "</ul>"
+				menu += "</ol>"
 			}
 			menu += "</li>"
 		}

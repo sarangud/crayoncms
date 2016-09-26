@@ -2,7 +2,7 @@ package com.crayoncms
 
 import grails.plugins.*
 
-class CrayonCoreGrailsPlugin extends Plugin {
+class CrayonAdminGrailsPlugin extends Plugin {
 
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "3.1.10 > *"

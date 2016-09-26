@@ -66,7 +66,7 @@ if (typeof jQuery !== 'undefined') {
     		items: 'li',
     		placeHolder: 'li',
     		toleranceElement: '> div',
-    		listType: 'ul',
+    		//listType: 'ul',
 			update: function(event, ui) {
 				var data =  $(this).nestedSortable('toArray');
 				var menuOrder = JSON.stringify(data);
