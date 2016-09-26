@@ -1,4 +1,5 @@
 <table class="table table-striped table-hover">
+
     <thead>
          <tr>
             <g:each in="${domainProperties}" var="p" status="i">
@@ -7,6 +8,7 @@
             </g:each>
         </tr>
     </thead>
+	
     <tbody>
         <g:each in="${collection}" var="bean" status="i">
             <tr>
@@ -21,4 +23,5 @@
             </tr>
         </g:each>
     </tbody>
+	
 </table>

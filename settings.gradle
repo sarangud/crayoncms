@@ -1,1 +1,1 @@
-include "app-starter-helios", "crayon-core", "crayon-pages", "crayon-blocks"
+include "app-starter-helios", "crayon-core", "crayon-page", "crayon-block", "crayon-user", "crayon-menu"
