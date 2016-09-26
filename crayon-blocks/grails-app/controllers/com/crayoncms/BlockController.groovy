@@ -4,25 +4,23 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured("ROLE_ADMIN")
 @Transactional(readOnly = true)
 class BlockController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	@Secured("ROLE_VIEW_BLOCK")
     def index(Integer max) {
         params.max = Math.min(max ?: 20, 100)
         respond Block.list(params), model:[blockCount: Block.count()]
     }
 
-    def show(Block block) {
-        respond block
-    }
-
+	@Secured("ROLE_CREATE_BLOCK")
     def create() {
         respond new Block(params)
     }
 
+	@Secured("ROLE_CREATE_BLOCK")
     @Transactional
     def save(Block block) {
         if (block == null) {
@@ -50,10 +48,12 @@ class BlockController {
         }
     }
 
+	@Secured("ROLE_EDIT_BLOCK")
     def edit(Block block) {
         respond block
     }
 
+	@Secured("ROLE_EDIT_BLOCK")
     @Transactional
     def update(Block block) {
         if (block == null) {
@@ -81,6 +81,7 @@ class BlockController {
         }
     }
 
+	@Secured("ROLE_DELETE_BLOCK")
     @Transactional
     def delete(Block block) {
 

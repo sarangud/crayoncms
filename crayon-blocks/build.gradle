@@ -9,7 +9,6 @@ buildscript {
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.8.2"
-        classpath "org.grails.plugins:hibernate4:5.0.10"
     }
 }
 
@@ -18,8 +17,8 @@ group "com.crayoncms"
 
 apply plugin:"eclipse"
 apply plugin:"idea"
-//apply plugin:"war"
-apply plugin:"org.grails.grails-web"
+apply plugin:"org.grails.grails-plugin"
+apply plugin:"org.grails.grails-plugin-publish"
 apply plugin:"org.grails.grails-gsp"
 apply plugin:"asset-pipeline"
 
@@ -50,37 +49,32 @@ dependencies {
     compile "org.grails:grails-web-boot"
     compile "org.grails.plugins:cache"
     compile "org.grails.plugins:scaffolding"
-    compile "org.grails.plugins:hibernate4"
-    compile "org.hibernate:hibernate-ehcache"
-	//compile "com.crayoncms:crayon-core:0.1.0"
     console "org.grails:grails-console"
-    profile "org.grails.profiles:web"
+    profile "org.grails.profiles:web-plugin"
+    provided "org.grails:grails-plugin-services"
+    provided "org.grails:grails-plugin-domain-class"
+	provided "org.grails.plugins:spring-security-core:3.1.1"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.8.2"
-    runtime "com.h2database:h2"
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 }
+grailsPublish {
+    // TODO: Provide values here
+    user = 'user'
+    key = 'key'
+    githubSlug = 'foo/bar'
+    license {
+        name = 'Apache-2.0'
+    }
+    title = "My Plugin"
+    desc = "Full plugin description"
+    developers = [johndoe:"John Doe"]
+    portalUser = ""
+    portalPassword = ""    
+}
 
 assets {
-    minifyJs = true
-    minifyCss = true
-	includes = ["uploads/*"]
-}
-
-springBoot {
-	executable = true
-}
-
-jar {
-	archiveName('crayoncms.jar')
-}
-
-grails {
-    plugins {
-        compile project(':crayon-core')
-		compile project(':crayon-pages')
-		compile project(':crayon-blocks')
-    }
+    packagePlugin = true
 }
