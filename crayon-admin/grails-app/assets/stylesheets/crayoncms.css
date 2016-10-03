@@ -499,3 +499,8 @@ ul, .menu {
 	padding:3px 6px;
 	font-size: 12px;
 }
+
+input.fa.fa-trash {
+    border: none;
+    color: #db4800;
+}

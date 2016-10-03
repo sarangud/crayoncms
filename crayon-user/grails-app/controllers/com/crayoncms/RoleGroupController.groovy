@@ -11,13 +11,15 @@ class RoleGroupController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 20, 100)
-		def roleGroupList = 
-        respond RoleGroup.list(params), model:[roleGroupCount: RoleGroup.count()]
+        redirect RoleGroup.findByName("Administrator")
     }
 
     def show(RoleGroup roleGroup) {
-        respond roleGroup
+        // TODO: comeback later for enhancing
+        def allRoleGroups = RoleGroup.list()
+        def allRoles = Role.list().with { it.groupBy({ authority -> authority.plugin})}
+        def authoritiesGrouped =  roleGroup.authorities.groupBy ({ authority -> authority.plugin })
+        respond roleGroup, model: [allRoleGroups: allRoleGroups, allRoles: allRoles, authoritiesGrouped: authoritiesGrouped]
     }
 
     def create() {
