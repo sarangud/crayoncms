@@ -1,1 +1,3 @@
-include "app-starter-helios", "crayon-admin", "crayon-page", "crayon-block", "crayon-user", "crayon-menu"
+rootProject.name="crayoncms"
+
+include "app-starter-helios", "crayon-page", "crayon-block", "crayon-user", "crayon-menu", "crayon-admin"
