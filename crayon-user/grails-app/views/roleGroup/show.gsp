@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="admin" />
+        <meta name="layout" content="crayoncms_main" />
         <g:set var="entityName" value="${message(code: 'roleGroup.label', default: 'Role Group')}" />
         <title><g:message code="default.lists.label" args="[entityName]" /></title>
     </head>
@@ -22,24 +22,25 @@
 
                     <div class="col-md-3 col-sm-3">
                         <ul class="">
-                            <g:each in="${allRoleGroups}" var="roleGroup">
-                                <li class="list">
+                            <g:each in="${allRoleGroups}" var="rolGrp">
+
+                                    <li class="list <g:if test="${rolGrp.name == roleGroup.name}">active</g:if>" >
                                     <div class="row">
-                                        <div class="col-md-9">
-                                            <g:link action="show" resource="${roleGroup}">${roleGroup.name}</g:link>
+                                        <div class="col-md-8">
+                                            <g:link action="show" resource="${rolGrp}">${rolGrp.name}</g:link>
                                         </div>
-                                        <g:if test="${roleGroup.name != 'Administrator' && roleGroup.name != 'Authenticated'}">
+                                        <g:if test="${rolGrp.name != 'Administrator' && rolGrp.name != 'Authenticated'}">
                                             <div class="col-md-1">
-                                                <g:link action="edit" resource="${roleGroup}" data-toggle="modal" data-target=".modal"><i class="fa fa-pencil"></i></g:link>
+                                                <g:link action="edit" resource="${rolGrp}" data-toggle="modal" data-target=".modal"><i class="fa fa-pencil"></i></g:link>
                                             </div>
-                                            <div class="col-md-1">
-                                                <g:form resource="${roleGroup}" method="DELETE">
+                                            <div class="col-md-1 text-right">
+                                                <g:form resource="${rolGrp}" method="DELETE">
                                                     <input type="submit" class="fa fa-trash" value="&#xf1f8;" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                                                 </g:form>
                                             </div>
-                                         </g:if>
-                                    </div>
-                                </li>
+                                         </g:if></div>
+                                    </li>
+
                             </g:each>
                         </ul>
                     </div>
@@ -55,15 +56,16 @@
                                     <g:each in="${plugin.value}" var="role">
                                         <li class="list">
                                             <div class="row">
-                                                <div class="col-md-11">
-                                                    ${role}
-                                                </div>
+                                                <div class="col-md-11">${role}</div>
                                                 <div class="col-md-1 text-center">
                                                     <g:if test="${ authoritiesGrouped.find { it.key == plugin.key}?.value?.contains(role) }">
-                                                        <input type="checkbox" name="${role}" checked="checked" />
+                                                        <g:checkBox id="${role.authority}_removeRole" name="${role.authority}_removeRole"
+                                                        value="${true}"
+                                                        onclick="${ remoteFunction(action: 'removeRole', method: 'POST', params: [roleGroup: roleGroup, role: role]) }"/>
                                                     </g:if>
                                                     <g:else>
-                                                        <input type="checkbox" name="${role}" />
+                                                        <g:checkBox id="${role.authority}_addRole" name="${role.authority}_addRole"
+                                                        onclick="${ remoteFunction(action: 'addRole', method: 'POST', params: [roleGroup: roleGroup, role: role]) }"/>
                                                     </g:else>
                                                 </div>
                                             </div>

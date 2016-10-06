@@ -8,7 +8,7 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<link href="https://fonts.googleapis.com/css?family=Grand+Hotel" rel="stylesheet">
-    <asset:stylesheet src="crayoncms.css"/>
+    <asset:stylesheet src="crayoncms/crayoncms.css"/>
 
     <g:layoutHead/>
 </head>
@@ -83,7 +83,7 @@
         </div>
         
         <g:if test="${flash.message}">
-            <div class="alert alert-${flash.outcome} alert-dismissible" role="status">
+            <div id="notifyMess" class="alert alert-${flash.outcome} alert-dismissible" role="status">
             	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
             		<span aria-hidden="true">&times;</span>
             	</button>
@@ -116,7 +116,7 @@
 		</div>
 	</div>
 
-    <asset:javascript src="crayoncms.js"/>
+    <asset:javascript src="crayoncms/crayoncms.js"/>
 
 </body>
 </html>

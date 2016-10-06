@@ -131,8 +131,7 @@ class MenuController {
 				
 				menu.save flush: true
 			}
-		}	
-		println parentPositionMap
+		}
 		
 		render contentType: "text/json", text:'{"retMess": "Updated successfully" }'
 	}

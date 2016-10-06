@@ -8,7 +8,7 @@ import grails.plugin.springsecurity.annotation.Secured
 @Transactional(readOnly = true)
 class RoleGroupController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", addRole: "POST", update: "PUT", delete: "DELETE", removeRole: "POST"]
 
     def index(Integer max) {
         redirect RoleGroup.findByName("Administrator")
@@ -46,7 +46,7 @@ class RoleGroupController {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'roleGroup.label', default: 'RoleGroup'), roleGroup.name])
                 flash.outcome = "success"
-                redirect action: "index"
+                redirect roleGroup
             }
             '*' { respond roleGroup, [status: CREATED] }
         }
@@ -76,7 +76,7 @@ class RoleGroupController {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'roleGroup.label', default: 'RoleGroup'), roleGroup.name])
                 flash.outcome = "success"
-                redirect action: "index"
+                redirect roleGroup
             }
             '*'{ respond roleGroup, [status: OK] }
         }
@@ -97,11 +97,59 @@ class RoleGroupController {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'roleGroup.label', default: 'RoleGroup'), roleGroup.name])
                 flash.outcome = "success"
-                redirect action:"index", method:"GET"
+                redirect RoleGroup.findByName("Administrator")
             }
             '*'{ render status: NO_CONTENT }
         }
     }
+
+    @Transactional
+    def addRole() {
+
+        if(!params.roleGroup || !params.role ) {
+            transactionStatus.setRollbackOnly()
+            render contentType: "text/json", status: BAD_REQUEST, text:'{"retMess": "Invalid role group and role. Please try again" }'
+            return
+        }
+
+        def roleGroupRole = new RoleGroupRole(roleGroup: RoleGroup.findByName(params.roleGroup), role: Role.findByAuthorityName(params.role))
+
+        if(roleGroupRole.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            render contentType: "text/json", status: BAD_REQUEST, text:'{"retMess": ' + roleGroupRole.errors + '}'
+            return
+        }
+
+
+        roleGroupRole.save flush:true
+
+        render contentType: "text/json", text:'{"retMess": "Role added successfully" }'
+
+    }
+
+    @Transactional
+    def removeRole() { // TODO: come back later for making this to delete
+
+        if(!params.roleGroup || !params.role ) {
+            transactionStatus.setRollbackOnly()
+            render contentType: "text/json", status: BAD_REQUEST, text:'{"retMess": "Invalid role group and role. Please try again" }'
+            return
+        }
+
+        def roleGroupRole = RoleGroupRole.findWhere(roleGroup: RoleGroup.findByName(params.roleGroup), role: Role.findByAuthorityName(params.role))
+
+        if(roleGroupRole.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            render contentType: "text/json", status: BAD_REQUEST, text:'{"retMess": ' + roleGroupRole.errors + '}'
+            return
+        }
+
+        roleGroupRole.delete flush:true
+
+        render contentType: "text/json", text:'{"retMess": "Role removed successfully" }'
+
+    }
+
 
     protected void notFound() {
         request.withFormat {

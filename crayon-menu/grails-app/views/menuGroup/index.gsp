@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="admin" />
+        <meta name="layout" content="crayoncms_main" />
         <g:set var="entityName" value="${message(code: 'menu.label', default: 'Menu Group')}" />
         <title><g:message code="default.lists.label" args="[entityName]" /></title>
     </head>
@@ -31,9 +31,9 @@
             				</div>
   						</div>
   						<div class="panel-body">
-  							<ul class="menu ui-sortable">
-  								<crayon:adminMenu groupName="${menuGroup.name}" />
-    						</ul>
+  							<ol class="menu ui-sortable">
+  								<crayoncms:adminMenu groupName="${menuGroup.name}" />
+    						</ol>
   						</div>
 					</div>
 				</g:each>

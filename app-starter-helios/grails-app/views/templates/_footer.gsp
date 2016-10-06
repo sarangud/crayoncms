@@ -3,13 +3,13 @@
                 <div class="row">
 
                     <!-- Tweets -->
-                    <crayon:block name="tweets" />
+                    <crayoncms:block name="tweets" />
 
                     <!-- Posts -->
-                    <crayon:block name="posts" />
+                    <crayoncms:block name="posts" />
 
                     <!-- Photos -->
-                    <crayon:block name="photos" />
+                    <crayoncms:block name="photos" />
 
                 </div>
                 <hr />

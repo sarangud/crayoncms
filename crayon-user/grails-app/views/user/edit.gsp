@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="admin" />
+        <meta name="layout" content="crayoncms_main" />
         <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>

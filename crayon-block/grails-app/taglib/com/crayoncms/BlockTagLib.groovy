@@ -4,7 +4,7 @@ import com.crayoncms.Block
 
 class BlockTagLib {
 
-    static namespace = "crayon"
+    static namespace = "crayoncms"
 
     static defaultEncodeAs = [taglib:'html']
     static encodeAsForTags = [block: [taglib:'none']]

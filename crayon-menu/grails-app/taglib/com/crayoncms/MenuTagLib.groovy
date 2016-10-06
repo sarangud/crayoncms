@@ -5,7 +5,7 @@ import com.crayoncms.MenuGroup
 
 class MenuTagLib {
 	
-	static namespace = "crayon"
+	static namespace = "crayoncms"
 	
     static defaultEncodeAs = [taglib:'html']
     static encodeAsForTags = [adminMenu: [taglib:'none'], menu: [taglib:'none']]
