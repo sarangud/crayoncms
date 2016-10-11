@@ -1,4 +1,4 @@
-package com.crayoncms
+package com.crayoncms.user
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString

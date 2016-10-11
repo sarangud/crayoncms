@@ -1,8 +1,8 @@
-import com.crayoncms.Role
-import com.crayoncms.RoleGroup
-import com.crayoncms.RoleGroupRole
-import com.crayoncms.User
-import com.crayoncms.UserRoleGroup
+import com.crayoncms.user.Role
+import com.crayoncms.user.RoleGroup
+import com.crayoncms.user.RoleGroupRole
+import com.crayoncms.user.User
+import com.crayoncms.user.UserRoleGroup
 
 class CrayonUserBootStrap {
 

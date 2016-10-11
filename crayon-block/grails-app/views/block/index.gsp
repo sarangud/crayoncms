@@ -10,7 +10,9 @@
             <h1><g:message code="default.lists.label" args="[entityName]" /></h1>
         </content>
         <content tag="right-menu">
-            <g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+            <sec:link class="btn btn-info" action="create" expression="hasRole('ROLE_CRAYONCMS_BLOCK_CREATE')">
+                <g:message code="default.new.label" args="[entityName]" />
+            </sec:link>
         </content>
     
         <div id="list-block" class="content scaffold-list" role="main">

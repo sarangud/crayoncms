@@ -2,7 +2,7 @@ package com.crayoncms
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured("ROLE_ADMIN")
+@Secured("ROLE_CRAYONCMS_MANAGE_PLUGINS")
 class PluginController {
 	
 	def pluginManager

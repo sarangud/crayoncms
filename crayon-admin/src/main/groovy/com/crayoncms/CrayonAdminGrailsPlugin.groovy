@@ -12,7 +12,7 @@ class CrayonAdminGrailsPlugin extends Plugin {
     ]
 
     // TODO Fill in these fields
-    def title = "Crayon CMS" // Headline display name of the plugin
+    def title = "Administration" // Headline display name of the plugin
     def author = "Gogula Rajaprabhu"
     def authorEmail = "rgogulakrishnan@gmail.com"
     def description = '''\
@@ -24,7 +24,9 @@ Tiny CMS for the JVM.
     def documentation = "http://grails.org/plugin/crayon-cms"
 
     // Extra (optional) plugin metadata
-    def crayonMeta = [addonType: "plugin"]
+    def crayonMeta = [addonType: "plugin",
+                      roles: ["ROLE_CRAYONCMS_MANAGE_PLUGINS": "Manage plugins"]
+    ]
 
     // License: one of 'APACHE', 'GPL2', 'GPL3'
     def license = "APACHE"

@@ -12,13 +12,13 @@ class PageController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def pluginManager
 
-	@Secured("ROLE_VIEW_PAGE")
+	@Secured("ROLE_CRAYONCMS_PAGE_VIEW")
     def index(Integer max) {
         params.max = Math.min(max ?: 20, 100)
         respond Page.list(params), model:[pageCount: Page.count()]
     }
 
-	@Secured(["ROLE_VIEW_PAGE", "ROLE_ANONYMOUS"])
+	@Secured(["ROLE_CRAYONCMS_PAGE_VIEW", "ROLE_ANONYMOUS"])
     def show(String slug) {
 		Page page = Page.findBySlug(slug ?: "home")
         if(page) {
@@ -28,7 +28,7 @@ class PageController {
         }
     }
 
-	@Secured("ROLE_CREATE_PAGE")
+	@Secured("ROLE_CRAYONCMS_PAGE_CREATE")
     def create() {
         def page = new Page(params)
 
@@ -41,7 +41,7 @@ class PageController {
         respond page
     }
 
-	@Secured("ROLE_CREATE_PAGE")
+	@Secured("ROLE_CRAYONCMS_PAGE_CREATE")
     @Transactional
     def save(Page page) {
         if (page == null) {
@@ -69,12 +69,12 @@ class PageController {
         }
     }
 
-	@Secured("ROLE_EDIT_PAGE")
+	@Secured("ROLE_CRAYONCMS_PAGE_EDIT")
     def edit(Page page) {
         respond page
     }
 
-	@Secured("ROLE_EDIT_PAGE")
+	@Secured("ROLE_CRAYONCMS_PAGE_EDIT")
     @Transactional
     def update(Page page) {
         if (page == null) {
@@ -102,7 +102,7 @@ class PageController {
         }
     }
 
-	@Secured("ROLE_DELETE_PAGE")
+	@Secured("ROLE_CRAYONCMS_PAGE_DELETE")
     @Transactional
     def delete(Page page) {
 

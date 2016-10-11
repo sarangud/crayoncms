@@ -7,12 +7,20 @@
     </head>
     <body>
     	<content tag="header">
-       		<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+       		<h1>
+       		    <sec:ifAllGranted roles="ROLE_CRAYONCMS_PAGE_EDIT">
+       		        <g:message code="default.edit.label" args="[entityName]" /></h1>
+       		    </sec:ifAllGranted>
+       		    <sec:ifNotGranted roles="ROLE_CRAYONCMS_PAGE_EDIT">
+                    <g:message code="default.view.label" args="[entityName]" /></h1>
+       		    </sec:ifNotGranted>
        	</content>
         <content tag="right-menu">
-	        <g:form resource="${this.page}" method="DELETE">
-	        	<input class="btn btn-danger" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-	        </g:form>
+            <sec:ifAllGranted roles="ROLE_CRAYONCMS_PAGE_DELETE">
+	            <g:form resource="${this.page}" method="DELETE">
+	        	    <input class="btn btn-danger" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+	            </g:form>
+	        </sec:ifAllGranted>
         </content>
         <div id="edit-page" class="content scaffold-edit" role="main">
             <g:hasErrors bean="${this.page}">
@@ -24,7 +32,7 @@
             </g:hasErrors>
             <g:form resource="${this.page}" method="PUT">
                 <g:hiddenField name="version" value="${this.page?.version}" />
-                
+
                	<div class="row">
             		<div class="col-md-9">
             			<f:field bean="page" property="name" />
@@ -39,9 +47,11 @@
 						<f:field bean="page" property="layout" />
 	            	</div>
                </div>
-                
-                <input class="btn btn-success" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                <g:link class="btn btn-default" action="index"><g:message code="default.button.cancel.label" /></g:link>
+
+                <sec:ifAllGranted roles="ROLE_CRAYONCMS_PAGE_EDIT">
+                    <input class="btn btn-success" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:link class="btn btn-default" action="index"><g:message code="default.button.cancel.label" /></g:link>
+                </sec:ifAllGranted>
             </g:form>
         </div>
     </body>

@@ -26,7 +26,10 @@ Manage site pages.
     // Extra (optional) plugin metadata
 	def crayonMeta = [
 		addonType: "plugin",
-		roles: ["ROLE_CREATE_PAGE": "Create a page", "ROLE_EDIT_PAGE": "Edit a page", "ROLE_VIEW_PAGE": "View pages", "ROLE_DELETE_PAGE": "Delete a page"]
+		roles: ["ROLE_CRAYONCMS_PAGE_CREATE": "Create a page",
+                "ROLE_CRAYONCMS_PAGE_EDIT": "Edit a page",
+                "ROLE_CRAYONCMS_PAGE_VIEW": "View pages",
+                "ROLE_CRAYONCMS_PAGE_DELETE": "Delete a page"]
 	]
 
     // License: one of 'APACHE', 'GPL2', 'GPL3'

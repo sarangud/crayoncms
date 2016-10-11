@@ -1,4 +1,4 @@
-package com.crayoncms
+package com.crayoncms.user
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional

@@ -1,4 +1,4 @@
-package com.crayoncms
+package com.crayoncms.user
 
 import grails.gorm.DetachedCriteria
 import groovy.transform.ToString

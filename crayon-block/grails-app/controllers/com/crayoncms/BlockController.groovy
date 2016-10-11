@@ -9,18 +9,18 @@ class BlockController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-	@Secured("ROLE_VIEW_BLOCK")
+	@Secured("ROLE_CRAYONCMS_BLOCK_VIEW")
     def index(Integer max) {
         params.max = Math.min(max ?: 20, 100)
         respond Block.list(params), model:[blockCount: Block.count()]
     }
 
-	@Secured("ROLE_CREATE_BLOCK")
+	@Secured("ROLE_CRAYONCMS_BLOCK_CREATE")
     def create() {
         respond new Block(params)
     }
 
-	@Secured("ROLE_CREATE_BLOCK")
+	@Secured("ROLE_CRAYONCMS_BLOCK_CREATE")
     @Transactional
     def save(Block block) {
         if (block == null) {
@@ -48,12 +48,12 @@ class BlockController {
         }
     }
 
-	@Secured("ROLE_EDIT_BLOCK")
+	@Secured("ROLE_CRAYONCMS_BLOCK_EDIT")
     def edit(Block block) {
         respond block
     }
 
-	@Secured("ROLE_EDIT_BLOCK")
+	@Secured("ROLE_CRAYONCMS_BLOCK_EDIT")
     @Transactional
     def update(Block block) {
         if (block == null) {
@@ -81,7 +81,7 @@ class BlockController {
         }
     }
 
-	@Secured("ROLE_DELETE_BLOCK")
+	@Secured("ROLE_CRAYONCMS_BLOCK_DELETE")
     @Transactional
     def delete(Block block) {
 

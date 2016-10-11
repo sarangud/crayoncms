@@ -1,11 +1,11 @@
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.crayoncms.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.crayoncms.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.crayoncms.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.crayoncms.user.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.crayoncms.user.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.crayoncms.user.Role'
 grails.plugin.springsecurity.authority.groupAuthorityNameField = 'authorities'
 grails.plugin.springsecurity.useRoleGroups = true
 grails.plugin.springsecurity.rememberMe.persistent = true
-grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'com.crayoncms.PersistentLogin'
+grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'com.crayoncms.user.PersistentLogin'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

@@ -1,4 +1,4 @@
-package com.crayoncms
+package com.crayoncms.user
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -19,7 +19,7 @@ class RoleGroupController {
         def allRoleGroups = RoleGroup.list()
         def allRoles = Role.list().with { it.groupBy({ authority -> authority.plugin})}
         def authoritiesGrouped =  roleGroup.authorities.groupBy ({ authority -> authority.plugin })
-        respond roleGroup, model: [allRoleGroups: allRoleGroups, allRoles: allRoles, authoritiesGrouped: authoritiesGrouped]
+        respond roleGroup, model: [allRoleGroups: allRoleGroups, allRoles: allRoles.sort { it.key }, authoritiesGrouped: authoritiesGrouped]
     }
 
     def create() {
